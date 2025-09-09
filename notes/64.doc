@@ -1,0 +1,16 @@
+CI/CD Overview
+
+CI - Continuous Integration  <---- operates arround build process
+CD - Continuous Delivery/Deployment <---- operates arround deployment process
+
+CICD Pipeline = CI Pipeline + CD Pipeline
+
+Sample CI Pipeline
+
+Checkout Code into a VM ------> Unit Tests -----> Static Code Analysis ------> Build Artifact -------> Create the docker Image -------> Scan the Image -------> Push the Image to the Registry ------> Update the kubenetes manifest file
+                                                                                                                                               
+Sample CD Pipeline
+
+Pull the Image from the Registry -------> Deploy the Image to the Dev Environment 
+
+
