@@ -75,10 +75,6 @@ jobs:
               with:
                   token: ${{ secrets.GH_TOKEN }}
 
-            - name: Update tag in kubernetes deployment menifest
-              run: |
-                sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}|" kubernetes/productcatalog/deploy.yaml
-
             - name: Fetch all branches
               run: git fetch --all
 
@@ -86,6 +82,10 @@ jobs:
               run: |
                 BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
                 git checkout "$BRANCH"
+
+            - name: Update tag in kubernetes deployment menifest
+              run: |
+                sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}|" kubernetes/productcatalog/deploy.yaml
             - name: Commit and push changes 
               run: |
                 git config --global user.name "${{secrets.GH_USER_NAME}}"
