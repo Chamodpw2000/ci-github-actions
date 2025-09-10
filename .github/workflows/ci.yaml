@@ -79,6 +79,9 @@ jobs:
               run: |
                 sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}|" kubernetes/productcatalog/deploy.yaml
 
+            - name: Fetch all branches
+              run: git fetch --all
+
             - name: Checkout branch
               run: git checkout main
 
