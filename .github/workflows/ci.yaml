@@ -79,6 +79,9 @@ jobs:
               run: |
                 sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}|" kubernetes/productcatalog/deploy.yaml
 
+            - name: Checkout branch
+              run: git checkout ${{ github.ref_name }}
+
             - name: Commit and push changers
               run: |
                 git config --global user.name "${{secrets.GH_USER_NAME}}"
