@@ -33,7 +33,7 @@ spec:
         - name: productcatalogservice
 
 
-          image: chamod62/product-catalog:17623068758
+          image: chamod62/product-catalog:17623116931
 
           imagePullPolicy: IfNotPresent
           ports:
