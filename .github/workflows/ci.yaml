@@ -83,9 +83,10 @@ jobs:
               run: git fetch --all
 
             - name: Checkout branch
-              run: git checkout main
-
-            - name: Commit and push changers
+              run: |
+                BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
+                git checkout "$BRANCH"
+            - name: Commit and push changes 
               run: |
                 git config --global user.name "${{secrets.GH_USER_NAME}}"
                 git config --global user.email "${{secrets.GH_USER_EMAIL}}"
