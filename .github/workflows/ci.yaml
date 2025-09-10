@@ -35,7 +35,8 @@ jobs:
               run: |
                 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.56.2
                 export PATH=$PATH:$(go env GOPATH)/bin
-                golangci-lint run src/product-catalog/...
+                cd src/product-catalog
+                golangci-lint run ./...
 
     docker:
         runs-on: ubuntu-latest
