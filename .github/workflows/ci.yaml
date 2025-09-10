@@ -75,13 +75,6 @@ jobs:
               with:
                   token: ${{ secrets.GH_TOKEN }}
 
-            - name: Fetch all branches
-              run: git fetch --all
-
-            - name: Checkout branch
-              run: |
-                BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
-                git checkout "$BRANCH"
 
             - name: Update tag in kubernetes deployment menifest
               run: |
@@ -92,5 +85,7 @@ jobs:
                 git config --global user.email "${{secrets.GH_USER_EMAIL}}"
                 git add kubernetes/productcatalog/deploy.yaml
                 git commit -m "[CI]: Update image tag to ${{ github.run_id }}" || echo "No changes to commit"
-                git push
+                git push origin HEAD:main -f
+
+
 
