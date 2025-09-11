@@ -1,0 +1,30 @@
+Configure ArgoCD to git repo.
+
+create application
+
+Genaral
+Application Name - productcatalog-service
+project Name - default
+Sync Policy - Automatic <----- in default takes 180s to sync
+Can tick features like self heal.
+
+
+Source
+Repository URL - https://github.com/yourusername/productcatalog-service.git
+Revision - HEAD
+path - path to k8s manifests in the repo (kubernetes/productcatalog)
+
+Destination
+Cluster URL - https://kubernetes.default.svc (in cluster)
+in default it shows only the cluster that is connected to argocd.
+Namespaces - default (namespace where the app will be deployed)
+
+Create App
+
+
+
+
+
+
+
+
