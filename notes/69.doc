@@ -1,0 +1,58 @@
+Install ArgoCD in the kubernetes cluster
+
+kubectl create namespace argocd
+
+tells Kubernetes to create a new namespace called argocd in your cluster. 
+Namespaces are used to organize and isolate resources (like pods, services, etc.) 
+within a Kubernetes cluster. In this case, you are preparing a separate space for 
+installing and managing ArgoCD and its resources.
+
+within this namespace, install argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+verify the installation
+
+kubectl get pods -n argocd
+This command lists all the pods running in the argocd namespace. You should see several pods related 
+to ArgoCD, such as argocd-server, argocd-repo-server, argocd-application-controller, etc. 
+Ensure that all pods are in the Running state before proceeding.
+
+kubectl get svc -n argocd
+
+This command lists all the services running in the argocd namespace.
+
+Among the services, you should see one named argocd-server. This service is responsible for exposing the ArgoCD API server.
+
+To access the ArgoCD UI, you can port-forward the argocd-server service to your local machine.
+
+kubectl edit svc argocd-server -n argocd
+
+Change the type in to LoadBalancer from ClusterIP
+
+Now you can access the ArgoCD UI using the external IP address assigned to the argocd-server service by the LoadBalancer.
+
+Kubectl get secrets -n argocd
+This command lists all the secrets in the argocd namespace. Look for a secret named argocd-initial-admin-secret.
+
+This secret contains the initial admin password for ArgoCD.
+
+kubectl edit secret argocd-initial-admin-secret -n argocd
+
+with this command we can get the password in plain text
+
+This password is base64 encoded, so you will need to decode it to get the actual password.
+
+echo <base64-encoded-password> | base64 --decode
+
+and get password, sign in with username admin and the password you just decoded from argocd UI.
+
+ArgoCD can deploy applications to the same cluster where it is installed (the in-cluster setup) or to external clusters (the out-of-cluster setup).
+
+
+
+
+
+
+
+
