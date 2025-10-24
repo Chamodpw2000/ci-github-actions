@@ -11,7 +11,8 @@ Most of the times version control system is github and target environment is a k
 Advantages of GitOps approach
 
 1. Automatic - once the manifests are updated in the repo, CD tool will automatically update the target environment.
-2. Reconciliation of state - if there are any manual changes in the target environment, CD tool will revert it back to the desired state so version control system is the single source of truth.
+2. Reconciliation of state - if there are any manual changes in the target environment, CD tool will revert it back to the desired 
+state so version control system is the single source of truth.
 3. Audit trail - all the changes are tracked in the version control system.
 
 

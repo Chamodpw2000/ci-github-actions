@@ -14,5 +14,6 @@ group the tasks into jobs. Jobs run on a runner (a VM hosted by github or self h
 parts of a job
 1. name - name of the job
 2. runs-on - type of runner (ubuntu, windows, macos)
-3. steps - a job contains one or more steps. A step is either a shell script that will be executed or an action that will be run.
+3. steps - a job contains one or more steps. A step is either a shell script that will 
+be executed or an action that will be run.
 
